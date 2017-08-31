@@ -1,0 +1,149 @@
+
+Ejecución del día 31/08/2017
+https://help.github.com/articles/set-up-git/
+
+
+C:\Users\xIS09862>git config --list
+core.symlinks=false
+core.autocrlf=true
+color.diff=auto
+color.status=auto
+color.branch=auto
+color.interactive=true
+help.format=html
+http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+diff.astextplain.textconv=astextplain
+rebase.autosquash=true
+
+
+C:\>git config --global user.name "yo"
+
+C:\>git config --list
+core.symlinks=false
+core.autocrlf=true
+color.diff=auto
+color.status=auto
+color.branch=auto
+color.interactive=true
+help.format=html
+http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+diff.astextplain.textconv=astextplain
+rebase.autosquash=true
+user.name=yo
+
+____
+
+a)	Take an existing project or directory and imports it into Git
+
+C:\Doc\Documentacion\Selenium\Ejercicios\Amazon>git init
+Initialized empty Git repository in C:/Doc/Documentacion/Selenium/Ejercicios/Amazon/.git/
+
+____
+
+Github: Creo  https://github.com/emaresg/Selenium
+
+____
+
+C:\Doc\Documentacion\Selenium\Ejercicios\Amazon>git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        AmazonRaquetadeTenis_notas.txt
+        AmazonRaquetdeTenis.html
+        Amazon_raqueta.java
+        Ejecucion31Agosto2017.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Fichero HEAD de C:\Doc\Documentacion\Selenium\Ejercicios\Amazon\.git se ve asi:
+ref: refs/heads/master
+
+____
+
+Preparar el entorno de GitHub
+Muchos servidores Git utilizan la autentificación a través de claves públicas SSH.
+GitHub usa una clave pública ssh para establecer una conexión segura entre nosotros y el servidor de git.
+https://git-scm.com/book/es/v1/Git-en-un-servidor-Generando-tu-clave-p%C3%BAblica-SSH
+Asegurate que no tengas ya una clave. Por defecto, las claves de cualquier usuario SSH se guardan en la carpeta ~/.ssh de dicho usuario. Puedes verificar si tienes ya unas claves, simplemente situandote sobre dicha carpeta y viendo su contenido:
+
+$ cd ~/.ssh
+$ ls
+authorized_keys2  id_dsa       known_hosts
+config            id_dsa.pub
+
+Has de buscar un par de archivos con nombres tales como 'algo' y 'algo.pub'; siendo ese "algo" normalmente 'iddsa' o 'idrsa'. 
+El archivo terminado en '.pub' es tu clave pública, y el otro archivo es tu clave privada. 
+
+Si no tienes esos archivos (o no tienes ni siquiera la carpeta '.ssh'), has de crearlos; utilizando un programa llamado 'ssh-keygen', que viene incluido en el paquete SSH de los sistemas Linux/Mac o en el paquete MSysGit en los sistemas Windows:
+$ ssh-keygen 
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/schacon/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /Users/schacon/.ssh/id_rsa.
+Your public key has been saved in /Users/schacon/.ssh/id_rsa.pub.
+The key fingerprint is:
+43:c5:5b:5f:b1:f1:50:43:ad:20:a6:92:6a:1f:9a:3a schacon@agadorlaptop.local
+Como se vé, este comando primero solicita confirmación de dónde van a a guardarse las claves ('.ssh/id_rsa'), y luego solicita, dos veces, una contraseña (passphrase), contraseña que puedes dejar en blanco si no deseas tener que teclearla cada vez que uses la clave.
+
+Tras generarla, cada usuario ha de encargarse de enviar su clave pública a quienquiera que administre el servidor Git, en el caso de que este esté configurado con SSH y así lo requiera (en mi caso Github).
+
+Probé en el cmd y no funciono:
+C:\>ssh-keygen
+"ssh-keygen" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.
+
+Utilice: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+Open Git Bash
+Paste the text below
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+This creates a new ssh key, using the provided email as a label.
+
+Generating public/private rsa key pair.
+When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+
+ Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):[Press enter]
+
+At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases".
+
+Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]
+
+
+Mi ejecución:
+$ ssh-keygen -t rsa -b 4096 -C "emaresg@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/xIS09862/.ssh/id_rsa):
+Created directory '/c/Users/xIS09862/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/xIS09862/.ssh/id_rsa.
+Your public key has been saved in /c/Users/xIS09862/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:/lzLfLCjJPHG9WucCK43JodIe3JEJmsgKjrCG3+Wtcw emaresg@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|                 |
+|                 |
+|                 |
+|  . . . o        |
+| . . . =S   .    |
+|o     +o.+....   |
+|+.   o=++o=..=.. |
+|+.o  ++E=**++.=. |
+|.o..o  +.*+o++.  |
++----[SHA256]-----+
+
+
+(en mi instalacion Git tengo este directorio C:\Program Files\Git\etc\ssh, no se si esto vale para algo)
+cpea1234
+
+Esto ha generado:
+C:\Users\xIS09862\.ssh
+
+Añadir el contenido del fichero id_dsa.pub en Github

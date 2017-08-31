@@ -1,0 +1,11 @@
+﻿Introducing the Selenium-WebDriver API by Example
+
+Partiendo de Amazon_raqueta.java crear clase igual que haga lo mismo. 
+Incluiré esa clase en un proyecto Spring Boot. 
+
+
+=======
+
+
+Selenium RC
+
